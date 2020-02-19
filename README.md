@@ -21,4 +21,6 @@
 
 * ????
 
+### Communication
 
+https://discord.gg/w7xW5A
