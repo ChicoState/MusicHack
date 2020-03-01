@@ -14,6 +14,8 @@ import {
   View,
   Text,
   StatusBar,
+  FlatList,
+  TextInput,
 } from 'react-native';
 
 import {
@@ -23,52 +25,31 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+// import RecommendedSongsAction from '../actions/RecommendedSongsActions';
 
 export default function App() {
+  const [songs, setSongs] = useState([
+    { key: 1, artist: 'The Beatles', title: 'Yellow Submarine', genre: 'Classic Rock', },
+    { key: 2, artist: 'Post Malone', title: 'Circles', genre: 'Rap', },
+    { key: 3, artist: 'The Weeknd', title: 'Heartless', genre: 'Pop', },
+  ]);
   return (
-    // <Text>Jiis</Text>
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
+    {/* <RecommendedSongsAction /> */}
+      <View style={styles.container}>
+        <TextInput style={styles.searchBox} />
+        <ScrollView>
+          { songs.map(val => (
+              <View id={val.id}>
+                <Text style={styles.songCell}>
+                  <Text style={styles.artist}>{val.artist}</Text>
+                  <Text style={styles.title}> {val.title} </Text>
+                  <Text style={styles.genre}> ({val.genre})</Text>
+                </Text>
+              </View>
+          ))}
         </ScrollView>
-      </SafeAreaView>
+      </View>
     </>
   );
 };
@@ -109,5 +90,34 @@ const styles = StyleSheet.create({
     padding: 4,
     paddingRight: 12,
     textAlign: 'right',
+  },
+  songCell:{
+    marginTop: 10,
+    padding: 20,
+    backgroundColor: '#ccc',
+    fontSize: 20,
+    
+    // marginHorizontal: 10,
+    // marginTop: 24,
+  },
+  artist:{
+    fontWeight: 'bold',
+  },
+  title:{
+    color: 'white',
+  },
+  genre:{
+   fontStyle: 'italic',
+  },
+  searchBox:{
+    height: 40, 
+    borderColor: 'gray', 
+    borderWidth: 1
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    paddingTop: 20,
+    paddingHorizontal: 10
   },
 });
