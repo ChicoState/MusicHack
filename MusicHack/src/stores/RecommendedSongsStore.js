@@ -1,7 +1,7 @@
 import alt from '../alt';
 import RecommendedSongsAction from '../actions/RecommendedSongsActions';
 
-export class RecommendedSongsStore {
+class RecommendedSongsStore {
   constructor() {
     this.songs = [];
 

@@ -2,13 +2,13 @@
 
 import alt from '../alt';
 
-export class RecommendedSongsActions {
-  updateRecommendedSongs(songs) {
-    this.dispatch(songs);
+class RecommendedSongsActions {
+  constructor() {
+    this.generateActions('updateRecommendedSongs');
   }
 
   getTestSongs() {
-    this.actions.updateRecommendedSongs([
+    this.updateRecommendedSongs([
       {
         artist: 'The Beatles',
         title: 'Yellow Submarine',
