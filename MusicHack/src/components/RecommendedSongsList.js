@@ -15,7 +15,7 @@ class RecommendedSongsList extends Component {
 
   componentDidMount() {
     RecommendedSongsStore.listen(this.onChange);
-    RecommendedSongsActions.getTestSongs();
+    RecommendedSongsActions.getChartSongs();
   }
 
   componentWillUnmount() {
@@ -32,7 +32,7 @@ class RecommendedSongsList extends Component {
         contentInsetAdjustmentBehavior="automatic"
         style={styles.scrollView}
         data={this.state.songs}
-        renderItem={({item}) => <RecommendedSongRow title={item.name} />}
+        renderItem={({item}) => <RecommendedSongRow title={item.title} artist={item.artist.name} artwork={item.album.cover_big} />}
       />
     );
   }
