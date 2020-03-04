@@ -32,7 +32,7 @@ class RecommendedSongsList extends Component {
         contentInsetAdjustmentBehavior="automatic"
         style={styles.scrollView}
         data={this.state.songs}
-        renderItem={({item}) => <RecommendedSongRow title={item.title} />}
+        renderItem={({item}) => <RecommendedSongRow title={item.name} />}
       />
     );
   }
