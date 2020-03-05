@@ -2,8 +2,7 @@
 
 ### Mobile
 
-* Xamarin
-* Flutter
+* React Native
 
 ### CI/CD
 
