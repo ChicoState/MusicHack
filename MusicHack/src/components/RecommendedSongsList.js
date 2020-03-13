@@ -32,7 +32,14 @@ class RecommendedSongsList extends Component {
         contentInsetAdjustmentBehavior="automatic"
         style={styles.scrollView}
         data={this.state.songs}
-        renderItem={({item}) => <RecommendedSongRow title={item.title} artist={item.artist.name} artwork={item.album.cover_big} />}
+        renderItem={({item}) => (
+			<RecommendedSongRow 
+				title={item.title} 
+				artist={item.artist.name} 
+				artwork={item.album.cover_big} 
+			/>
+		)}
+		keyExtractor = {item => item.title}
       />
     );
   }
