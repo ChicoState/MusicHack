@@ -5,23 +5,38 @@
  * @format
  * @flow
  */
-
+import 'react-native-gesture-handler';
 import React from 'react';
 import {SafeAreaView, StyleSheet, StatusBar} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import {NavigationContainer} from '@react-navigation/native';
+import {createDrawerNavigator} from 'react-navigation-drawer';
+import {createStackNavigator} from 'react-navigation-stack';
+import {DrawerNavigator, DraweActions, createAppContainer } from 'react-navigation';
 
-import RecommendedSongsList from './src/components/RecommendedSongsList';
+import HomeScreen from './src/screens/HomeScreen';
+import RecommendedListScreen from './src/screens/RecommendedListScreen';
+import Menu from './src/components/Menu';
 
-export default function App() {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <RecommendedSongsList />
-      </SafeAreaView>
-    </>
-  );
-}
+
+const navigator = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Menu: Menu,
+	List: RecommendedListScreen
+  },
+  {
+    initialRouteName: 'Menu',
+	headerMode: 'none',
+    defaultNavigationOptions: {
+		
+    
+    }
+  }
+);
+
+export default createAppContainer(navigator);
+
 
 const styles = StyleSheet.create({
   scrollView: {

@@ -4,7 +4,6 @@ import RecommendedSongsAction from '../actions/RecommendedSongsActions';
 class RecommendedSongsStore {
   constructor() {
     this.songs = [];
-
     this.bindListeners({
       handleUpdateSongs: RecommendedSongsAction.UPDATE_RECOMMENDED_SONGS,
     });
