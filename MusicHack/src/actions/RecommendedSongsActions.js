@@ -7,27 +7,21 @@ class RecommendedSongsActions {
     this.generateActions('updateRecommendedSongs');
   }
 
-  getChartSongs () {
-    return fetch('https://api.deezer.com/chart/')
-      .then ( (response) => response.json() )
-      .then ( (responseJson) => {
-        console.log(responseJson.tracks);
-        this.updateRecommendedSongs(responseJson.tracks.data);        // console.log(responseJson.total);
+  getChartSongs() {
+    return fetch(
+      'https://vrfjid05qb.execute-api.us-east-2.amazonaws.com/default/getTopSongsWeb',
+    )
+      .then(response => response.json())
+      .then(responseJson => {
+        this.updateRecommendedSongs(responseJson);
       })
-    .catch((error) => {
-      console.log(error)
-    });
+      .catch(error => {
+        console.log(error);
+      });
   }
-  // name
-  // position
-  // type
 
   getTestSongs() {
-    // this.getChartSongs();
-    // console.log(this.getChartSongs());
-    this.updateRecommendedSongs(
-      // this.getChartSongs().data
-      [
+    this.updateRecommendedSongs([
       {
         artist: 'The Beatles',
         title: 'Yellow Submarine',
@@ -43,8 +37,7 @@ class RecommendedSongsActions {
         title: 'Heartless',
         genre: 'Pop',
       },
-    ]
-    );
+    ]);
   }
 }
 

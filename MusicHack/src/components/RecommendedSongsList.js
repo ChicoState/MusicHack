@@ -33,13 +33,13 @@ class RecommendedSongsList extends Component {
         style={styles.scrollView}
         data={this.state.songs}
         renderItem={({item}) => (
-			<RecommendedSongRow 
-				title={item.title} 
-				artist={item.artist.name} 
-				artwork={item.album.cover_big} 
-			/>
-		)}
-		keyExtractor = {item => item.title}
+          <RecommendedSongRow
+            title={item.title}
+            artist={item.artist}
+            artwork={item.albumartwork}
+          />
+        )}
+        keyExtractor={item => `${item.id}`}
       />
     );
   }
