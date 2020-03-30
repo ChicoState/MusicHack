@@ -1,21 +1,23 @@
-import React from "react";
-import { Text, StyleSheet, View, Button, TouchableOpacity } from "react-native";
+import React from 'react';
+import {Text, StyleSheet, View} from 'react-native';
 
-
-const HomeScreen = ({navigation}) => {
-
-	return (
-		<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-		  <Text style={styles.text}>Music Hack</Text>
-		</View>
-	  );
+const HomeScreen = () => {
+  return (
+    <View style={styles.viewStyle}>
+      <Text style={styles.text}>Music Hack</Text>
+    </View>
+  );
 };
-
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 50
-  }
+    fontSize: 50,
+  },
+  viewStyle: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 export default HomeScreen;
