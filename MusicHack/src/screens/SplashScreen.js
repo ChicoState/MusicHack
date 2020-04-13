@@ -2,28 +2,32 @@ import React, {Component} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 
 class Splash extends Component {
+  constructor(props) {
+    super(props);
+    this.timer = null;
+  }
+  componentDidMount() {
+    this.navigateToAuth();;
+  }
 
-async componentDidMount() {
-// You can load api data or any other thing here if you want
-  const data = await this.navigateToHome();
-  if (data !== null) {
-    this.props.navigation.navigate('Auth');
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+  }
+
+  navigateToAuth() {
+    // Splash screen will remain visible for 2 seconds
+    this.timer = setTimeout(() => {this.props.navigation.navigate('Auth');},2000);
+
+  }
+
+  render() {
+      return (
+        <View style={styles.container}>
+        <Text style={styles.textStyle}>Music Hack</Text>
+        </View>
+      );
   }
 }
-
-navigateToHome = async () => {
-  // Splash screen will remain visible for 2 seconds
-  const wait = time => new Promise((resolve) => setTimeout(resolve, time));
-  return wait(2000).then(() => this.props.navigation.navigate('Auth'))
-};
-
-render() {
-    return (
-      <View style={styles.container}>
-      <Text style={styles.textStyle}>Music Hack</Text>
-      </View>
-    );
-}}
 
 const styles = StyleSheet.create({
   container: {
