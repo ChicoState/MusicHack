@@ -5,27 +5,66 @@
  * @format
  * @flow
  */
+import React, { Component} from 'react';
 import 'react-native-gesture-handler';
 import {StyleSheet} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {createStackNavigator} from 'react-navigation-stack';
-import {createAppContainer} from 'react-navigation';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 
 import HomeScreen from './src/screens/HomeScreen';
 import RecommendedListScreen from './src/screens/RecommendedListScreen';
+import SignInScreen from './src/screens/SignInScreen';
+import Splash from './src/screens/SplashScreen';
 import Menu from './src/components/Menu';
 
-const navigator = createStackNavigator(
+
+
+const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
     Menu: Menu,
-    List: RecommendedListScreen,
+    Top: RecommendedListScreen,
   },
   {
     initialRouteName: 'Menu',
     headerMode: 'none',
     defaultNavigationOptions: {},
   },
+);
+
+const AuthNavigator = createStackNavigator(
+  {
+    Login: SignInScreen,
+  },
+  {
+    initialRouteName: 'Login',
+    headerMode: 'none',
+    defaultNavigationOptions: {},
+  }
+);
+
+/*
+const SplashNavigator = createStackNavigator(
+  {
+    Splash: Splash
+  },
+  {
+    initialRouteName: 'Splash',
+    headerMode: 'none',
+    defaultNavigationOptions: {},
+  }
+);
+*/
+const navigator = createSwitchNavigator(
+  {
+    Splash: Splash,
+    Auth: AuthNavigator,
+    App: AppNavigator,
+  },
+  {
+    initialRouteName: 'Splash',
+  }
 );
 
 export default createAppContainer(navigator);
