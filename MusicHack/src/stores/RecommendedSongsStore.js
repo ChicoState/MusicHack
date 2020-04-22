@@ -1,11 +1,11 @@
 import alt from '../alt';
-import RecommendedSongsAction from '../actions/RecommendedSongsActions';
+import RecommendedSongsActions from '../actions/RecommendedSongsActions';
 
 class RecommendedSongsStore {
   constructor() {
     this.songs = [];
     this.bindListeners({
-      handleUpdateSongs: RecommendedSongsAction.UPDATE_RECOMMENDED_SONGS,
+      handleUpdateSongs: RecommendedSongsActions.UPDATE_RECOMMENDED_SONGS,
     });
   }
 
