@@ -10,8 +10,7 @@ export default class SignInScreen extends Component {
     this._isMounted = false;
     this.loginURL = 'http://ec2-18-216-114-252.us-east-2.compute.amazonaws.com';
     this.state = {
-      isComplete: false,
-      isAuthorizing: false,
+      _isAuthorizing: false,
     };
   }
   componentDidMount() {
@@ -40,7 +39,7 @@ export default class SignInScreen extends Component {
       view = (
         <WebView
           source={{uri: this.loginURL}}
-          onNavigationStateChange={this.onNavigationStateChange}
+          onNavigationStateChange={this._onNavigationStateChange}
         />
       );
     }
@@ -49,11 +48,9 @@ export default class SignInScreen extends Component {
 
   _signIn = () => {
     this.setState({_isAuthorizing: true});
-    //await AsyncStorage.setItem('userToken', 'abc');
-    //this.props.navigation.navigate('Menu');
   };
 
-  onNavigationStateChange(webViewState) {
+  _onNavigationStateChange = webViewState => {
     const url = webViewState.url;
     const endpoint = url.split('/')[3].substring(0, 13);
     if (endpoint === '#access_token') {
@@ -61,12 +58,16 @@ export default class SignInScreen extends Component {
       const rgxRefresh = RegExp('refresh_token=\\S+$');
       const accessToken = url.match(rgxAccess)[0].split('=')[1];
       const refreshToken = url.match(rgxRefresh)[0].split('=')[1];
-      SpotifyTokenActions.setInitialTokens(accessToken, refreshToken);
-      this.props.navigation.navigate('App');
+      SpotifyTokenActions.setTokens(accessToken, refreshToken);
+      this.navigateToHome();
     }
-  }
+  };
 
   guestAccess = () => {
+    this.navigateToHome();
+  };
+
+  navigateToHome = () => {
     this.props.navigation.navigate('App');
   };
 }
