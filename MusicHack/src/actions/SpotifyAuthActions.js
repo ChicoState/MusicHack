@@ -2,10 +2,10 @@
 
 import alt from '../alt';
 
-class SpotifyTokenActions {
+class SpotifyAuthActions {
   constructor() {
     this.generateActions('getTokens', 'setTokens');
   }
 }
 
-export default alt.createActions(SpotifyTokenActions);
+export default alt.createActions(SpotifyAuthActions);

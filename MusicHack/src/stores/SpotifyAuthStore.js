@@ -1,5 +1,5 @@
 import alt from '../alt';
-import SpotifyTokenActions from '../actions/SpotifyTokenActions';
+import SpotifyAuthActions from '../actions/SpotifyAuthActions';
 import * as React from 'react-native';
 
 class SpotifyTokenStore {
@@ -12,7 +12,7 @@ class SpotifyTokenStore {
     );
 
     this.bindListeners({
-      setTokens: SpotifyTokenActions.SET_TOKENS,
+      setTokens: SpotifyAuthActions.SET_TOKENS,
     });
   }
 
@@ -23,11 +23,18 @@ class SpotifyTokenStore {
     React.AsyncStorage.multiSet([accessPair, refreshPair])
       .then(() => {
         console.log('Successfully saved to Async Storage');
-        this.setState({accessToken: accessToken, refreshToken: refreshToken});
+        this.setState({
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+        });
       })
       .catch(e => {
         throw e;
       });
+  }
+
+  getSpotifyClient() {
+    return this.Spotify;
   }
 
   onLoad(tokens) {
@@ -35,7 +42,10 @@ class SpotifyTokenStore {
     if (tokens) {
       this.setState({accessToken: tokens[0][1], refreshToken: tokens[1][1]});
     } else {
-      this.setState({accessToken: null, refreshToken: null});
+      this.setState({
+        accessToken: null,
+        refreshToken: null,
+      });
     }
   }
 }

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {StyleSheet, View, Button} from 'react-native';
 import 'react-native-get-random-values';
 import {WebView} from 'react-native-webview';
-import SpotifyTokenActions from '../actions/SpotifyTokenActions';
+import SpotifyAuthActions from '../actions/SpotifyAuthActions';
 
 export default class SignInScreen extends Component {
   constructor(props) {
@@ -58,8 +58,9 @@ export default class SignInScreen extends Component {
       const rgxRefresh = RegExp('refresh_token=\\S+$');
       const accessToken = url.match(rgxAccess)[0].split('=')[1];
       const refreshToken = url.match(rgxRefresh)[0].split('=')[1];
-      SpotifyTokenActions.setTokens(accessToken, refreshToken);
-      this.navigateToHome();
+      SpotifyAuthActions.setTokens(accessToken, refreshToken).then(() => {
+        this.navigateToHome();
+      });
     }
   };
 
