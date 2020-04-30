@@ -20,7 +20,7 @@ class SpotifyTokenStore {
     const accessPair = ['@Spotify_access', accessToken];
     const refreshPair = ['@Spotify_refresh', refreshToken];
     console.log('Saving to Async Storage');
-    React.AsyncStorage.multiSet([accessPair, refreshPair])
+    return React.AsyncStorage.multiSet([accessPair, refreshPair])
       .then(() => {
         console.log('Successfully saved to Async Storage');
         this.setState({
@@ -31,10 +31,6 @@ class SpotifyTokenStore {
       .catch(e => {
         throw e;
       });
-  }
-
-  getSpotifyClient() {
-    return this.Spotify;
   }
 
   onLoad(tokens) {
