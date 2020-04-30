@@ -1,22 +1,22 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
-import SpotifyTokenStore from '../stores/SpotifyTokenStore';
+import SpotifyAuthStore from '../stores/SpotifyAuthStore';
 
 class Splash extends Component {
   constructor(props) {
     super(props);
-    this.state = SpotifyTokenStore.getState();
+    this.state = SpotifyAuthStore.getState();
     this.onChange = this.onChange.bind(this);
     this.timer = null;
   }
   componentDidMount() {
-    SpotifyTokenStore.listen(this.onChange);
+    SpotifyAuthStore.listen(this.onChange);
     this.navigateToAuth();
   }
 
   componentWillUnmount() {
     clearTimeout(this.timer);
-    SpotifyTokenStore.unlisten(this.onChange);
+    SpotifyAuthStore.unlisten(this.onChange);
   }
 
   onChange(state) {
@@ -26,7 +26,7 @@ class Splash extends Component {
 
   navigateToAuth() {
     // Splash screen will remain visible for 2 seconds
-    this.timer = setTimeout(() => {
+    this.timer = setTimeout(async () => {
       console.log(this.state);
       if (this.state.accessToken != null) {
         this.props.navigation.navigate('App');
@@ -37,25 +37,25 @@ class Splash extends Component {
   }
 
   render() {
-      return (
-        <View style={styles.container}>
+    return (
+      <View style={styles.container}>
         <Text style={styles.textStyle}>Music Hack</Text>
-        </View>
-      );
+      </View>
+    );
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   textStyle: {
-      fontSize: 50,
-      fontWeight: 'bold',
-      textShadowColor: '#00f',
-      textShadowRadius: 7,
+    fontSize: 50,
+    fontWeight: 'bold',
+    textShadowColor: '#00f',
+    textShadowRadius: 7,
   },
 });
 
