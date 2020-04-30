@@ -58,9 +58,8 @@ export default class SignInScreen extends Component {
       const rgxRefresh = RegExp('refresh_token=\\S+$');
       const accessToken = url.match(rgxAccess)[0].split('=')[1];
       const refreshToken = url.match(rgxRefresh)[0].split('=')[1];
-      SpotifyAuthActions.setTokens(accessToken, refreshToken).then(() => {
-        this.navigateToHome();
-      });
+      SpotifyAuthActions.setTokens(accessToken, refreshToken);
+      this.navigateToHome();
     }
   };
 
