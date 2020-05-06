@@ -13,13 +13,24 @@ class SpotifyPlaylistStore {
 
   updatePlaylists() {
     this.waitFor(SpotifyAuthStore);
-    const token = SpotifyAuthStore.getState.accessToken;
-    const spotify = new SpotifyWebApi();
-    spotify.setAccessToken(token);
-    return spotify.getUserPlaylists().then(playlists => {
-      this.setState({playlists: playlists});
-    });
+    setTimeout(() => {
+      const token = SpotifyAuthStore.getState().accessToken;
+      console.log(`Token: ${token}`);
+      const spotify = new SpotifyWebApi();
+      spotify.setAccessToken(token);
+      spotify.getUserPlaylists().then(playlists => {
+        console.log(playlists);
+        this.setState({playlists: playlists});
+      });
+    }, 2000);
   }
+
+  // createPlaylist() {
+  //   this.waitFor(SpotifyAuthStore);
+  //   const token = SpotifyAuthStore.getState().accessToken;
+  //   const spotify = new SpotifyWebApi();
+  //   spotify.setAccessToken(token);
+  // }
 }
 
 export default alt.createStore(SpotifyPlaylistStore, 'SpotifyPlaylistStore');

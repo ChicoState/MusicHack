@@ -2,10 +2,13 @@ import alt from '../alt';
 import SpotifyAuthActions from '../actions/SpotifyAuthActions';
 import * as React from 'react-native';
 
-class SpotifyTokenStore {
+class SpotifyAuthStore {
   constructor() {
     this.accessToken = null;
     this.refreshToken = null;
+    this.exportPublicMethods({
+      getAccessToken: this.getAccessToken,
+    });
     React.AsyncStorage.multiGet(
       ['@Spotify_access', '@Spotify_refresh'],
       (error, result) => this.onLoad(result),
@@ -16,9 +19,9 @@ class SpotifyTokenStore {
     });
   }
 
-  setTokens(accessToken, refreshToken) {
-    const accessPair = ['@Spotify_access', accessToken];
-    const refreshPair = ['@Spotify_refresh', refreshToken];
+  setTokens = (accessToken, refreshToken) => {
+    const accessPair = ['@Spotify_access', accessToken.toString()];
+    const refreshPair = ['@Spotify_refresh', refreshToken.toString()];
     console.log('Saving to Async Storage');
     return React.AsyncStorage.multiSet([accessPair, refreshPair])
       .then(() => {
@@ -31,19 +34,24 @@ class SpotifyTokenStore {
       .catch(e => {
         throw e;
       });
-  }
+  };
 
   onLoad(tokens) {
-    console.log('on Load Complete');
     if (tokens) {
-      this.setState({accessToken: tokens[0][1], refreshToken: tokens[1][1]});
-    } else {
       this.setState({
-        accessToken: null,
-        refreshToken: null,
+        accessToken: tokens[0][1],
+        refreshToken: tokens[1][1],
       });
     }
   }
+
+  getAccessToken() {
+    return Promise.resolve().then(() => {
+      while (this.accessToken == undefined || this.accessToken == null) {}
+      console.log(this.accessToken);
+      return this.accessToken;
+    });
+  }
 }
 
-export default alt.createStore(SpotifyTokenStore, 'SpotifyTokenStore');
+export default alt.createStore(SpotifyAuthStore, 'SpotifyTokenStore');
