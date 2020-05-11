@@ -27,7 +27,6 @@ class Splash extends Component {
   navigateToAuth() {
     // Splash screen will remain visible for 2 seconds
     this.timer = setTimeout(async () => {
-      console.log(this.state);
       if (this.state.accessToken != null) {
         this.props.navigation.navigate('App');
       } else {

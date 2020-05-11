@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {Text, StyleSheet, View} from 'react-native';
 import SpotifyPlaylistStore from '../stores/SpotifyPlaylistStore';
-import SpotifyPlaylistActions from '../actions/SpotifyPlaylistActions'
+import SpotifyPlaylistActions from '../actions/SpotifyPlaylistActions';
 
 class HomeScreen extends Component {
   constructor(props) {
@@ -28,8 +28,7 @@ class HomeScreen extends Component {
       </View>
     );
   }
-
-};
+}
 
 const styles = StyleSheet.create({
   text: {

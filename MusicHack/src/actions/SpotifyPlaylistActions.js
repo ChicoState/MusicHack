@@ -2,10 +2,9 @@
 
 import alt from '../alt';
 
-
 class SpotifyPlaylistActions {
   constructor() {
-    this.generateActions('updatePlaylists');
+    this.generateActions('updatePlaylists', 'createPlaylist');
   }
 }
 
