@@ -25,6 +25,21 @@ class SpotifyPlaylistStore {
     }, 2000);
   }
 
+  addSongToPlaylist(playlist, songs) {
+    this.waitFor(SpotifyAuthStore);
+    setTimeout(() => {
+      const token = SpotifyAuthStore.getState().accessToken;
+      const spotify = new SpotifyWebApi();
+      spotify.setAccessToken(token);
+      spotify.addTracksToPlaylist(playlist, songs).then(ses_id => {
+        spotify.getUserPlaylists().then(playlists => {
+          console.log(playlists);
+          this.setState({playlists: playlists});
+        });
+      });
+    }, 2000);
+  }
+
   // createPlaylist() {
   //   this.waitFor(SpotifyAuthStore);
   //   const token = SpotifyAuthStore.getState().accessToken;
