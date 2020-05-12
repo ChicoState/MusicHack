@@ -26,13 +26,11 @@ export default class SignInScreen extends Component {
     let view;
     if (isAuthoizing === false) {
       view = (
-        <View>
-          <Button title="Connect Accounts" onPress={this._signIn} />
+        <View style={styles.viewStyle}>
           <Button
-            marginVertical="20"
-            title="Continue as guest"
-            onPress={this.guestAccess}
-          />
+          color ='#44c'
+          title="Connect Spotify Account"
+          onPress={this._signIn} />
         </View>
       );
     } else {
@@ -58,9 +56,8 @@ export default class SignInScreen extends Component {
       const rgxRefresh = RegExp('refresh_token=\\S+$');
       const accessToken = url.match(rgxAccess)[0].split('=')[1];
       const refreshToken = url.match(rgxRefresh)[0].split('=')[1];
-      SpotifyAuthActions.setTokens(accessToken, refreshToken).then(() => {
-        this.navigateToHome();
-      });
+      SpotifyAuthActions.setTokens(accessToken, refreshToken);
+      this.navigateToHome();
     }
   };
 
@@ -77,7 +74,7 @@ const styles = StyleSheet.create({
     fontSize: 50,
   },
   viewStyle: {
-    marginVertical: 20,
+    backgroundColor: 'grey',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',

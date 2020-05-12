@@ -27,7 +27,6 @@ class Splash extends Component {
   navigateToAuth() {
     // Splash screen will remain visible for 2 seconds
     this.timer = setTimeout(async () => {
-      console.log(this.state);
       if (this.state.accessToken != null) {
         this.props.navigation.navigate('App');
       } else {
@@ -38,7 +37,7 @@ class Splash extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.viewStyle}>
         <Text style={styles.textStyle}>Music Hack</Text>
       </View>
     );
@@ -46,16 +45,18 @@ class Splash extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  viewStyle: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: 'grey',
   },
   textStyle: {
     fontSize: 50,
+    color: '#fff',
     fontWeight: 'bold',
-    textShadowColor: '#00f',
-    textShadowRadius: 7,
+    textShadowColor: '#44c',
+    textShadowRadius: 30,
   },
 });
 

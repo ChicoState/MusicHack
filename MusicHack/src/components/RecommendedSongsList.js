@@ -23,10 +23,12 @@ class RecommendedSongsList extends Component {
   }
 
   onChange(state) {
+    //console.log('on Changed Called');
     this.setState(state);
   }
 
   render() {
+    //console.log(this.state.songs);
     return (
       <FlatList
         contentInsetAdjustmentBehavior="automatic"
@@ -37,6 +39,7 @@ class RecommendedSongsList extends Component {
             title={item.title}
             artist={item.artist}
             artwork={item.albumartwork}
+            uri={item.spotify_uri}
           />
         )}
         keyExtractor={item => `${item.id}`}
