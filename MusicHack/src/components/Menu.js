@@ -1,18 +1,18 @@
 import {createDrawerNavigator} from 'react-navigation-drawer';
-import HomeScreen from '../screens/HomeScreen';
+import UserPlaylistsScreen from '../screens/UserPlaylistsScreen';
 import RecommendedListScreen from '../screens/RecommendedListScreen';
 
 const Menu = createDrawerNavigator(
   {
-    Home: {
-      screen: HomeScreen,
+    Playlists: {
+      screen: UserPlaylistsScreen,
     },
-    List: {
+    Recommended: {
       screen: RecommendedListScreen,
     },
   },
   {
-    initialRouteName: 'Home',
+    initialRouteName: 'Playlists',
   },
 );
 
