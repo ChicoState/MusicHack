@@ -11,7 +11,7 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 
-import HomeScreen from './src/screens/HomeScreen';
+import UserPlaylistsScreen from './src/screens/UserPlaylistsScreen';
 import RecommendedListScreen from './src/screens/RecommendedListScreen';
 import SignInScreen from './src/screens/SignInScreen';
 import Splash from './src/screens/SplashScreen';
@@ -19,9 +19,9 @@ import Menu from './src/components/Menu';
 
 const AppNavigator = createStackNavigator(
   {
-    Home: HomeScreen,
+    Playlists: UserPlaylistsScreen,
     Menu: Menu,
-    Top: RecommendedListScreen,
+    Recommended: RecommendedListScreen,
   },
   {
     initialRouteName: 'Menu',
