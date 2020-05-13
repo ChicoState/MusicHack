@@ -5,7 +5,6 @@
  * @format
  * @flow
  */
-import React, { Component} from 'react';
 import 'react-native-gesture-handler';
 import {StyleSheet} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -17,8 +16,6 @@ import RecommendedListScreen from './src/screens/RecommendedListScreen';
 import SignInScreen from './src/screens/SignInScreen';
 import Splash from './src/screens/SplashScreen';
 import Menu from './src/components/Menu';
-
-
 
 const AppNavigator = createStackNavigator(
   {
