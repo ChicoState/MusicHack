@@ -19,19 +19,12 @@ export default class RecommendedSongRow extends Component {
       });
     };
   }
-  /*
-
-
-  <Picker.Item label = {this.state.lists.playlists.items[0].name}
-               value ={this.state.lists.playlists.items[0].id} />
-  <Picker.Item label = {this.state.lists.playlists.items[1].name}
-               value ={this.state.lists.playlists.items[1].id} />
-  <Picker.Item label = {this.state.lists.playlists.items[2].name}
-               value ={this.state.lists.playlists.items[2].id} />
-  <Picker.Item label = {this.state.lists.playlists.items[3].name}
-               value ={this.state.lists.playlists.items[3].id} />
-
-  */
+  
+  componentDidMount(){
+    this.setState((state, props) => {
+      return {playlist: this.state.lists.playlists.items[0].id};
+    });
+  }
 
   render() {
     return (
