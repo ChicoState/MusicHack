@@ -12,11 +12,11 @@ export default class RecommendedSongRow extends Component {
       playlist: '',
       lists: SpotifyPlaylistStore.getState(),
     };
-    this.updatePlaylist = (playlist) => {
-      this.setState({ playlist: playlist },
-                  () => {console.log('Playlist id: ' + this.state.playlist)},
-                  console.log('Song uri: ' + this.props.uri),
-      );
+    this.updatePlaylist = playlist => {
+      this.setState({playlist: playlist}, () => {
+        console.log('Playlist id: ' + this.state.playlist);
+        console.log('Song uri: ' + this.props.uri);
+      });
     };
   }
   /*
@@ -40,24 +40,19 @@ export default class RecommendedSongRow extends Component {
         <Text style={styles.textStyle}>
           {this.props.title} -- {this.props.artist}
         </Text>
-        <Text>
-        Select playlist to add to:
-        </Text>
+        <Text>Select playlist to add to:</Text>
         <Picker
-          mode = 'dropdown'
-          selectedValue = {this.state.playlist}
+          mode="dropdown"
+          selectedValue={this.state.playlist}
           style={{height: 30, width: 250}}
-          onValueChange = {this.updatePlaylist}>
+          onValueChange={this.updatePlaylist}>
           {this.state.lists.playlists.items.map((item, index) => {
-            return (<Picker.Item label={item.name} value={item.id} key={index}/>)
+            return (
+              <Picker.Item label={item.name} value={item.id} key={index} />
+            );
           })}
-
         </Picker>
-        <Button
-          title='Add to playlist'
-          color ='#44c'
-          onPress={this._addSong}
-        />
+        <Button title="Add to playlist" color="#44c" onPress={this._addSong} />
       </View>
     );
   }
@@ -66,7 +61,10 @@ export default class RecommendedSongRow extends Component {
     console.log('ADDING');
     console.log('Playlist id: ' + this.state.playlist);
     console.log('Song uri: ' + this.props.uri);
-    SpotifyPlaylistActions.addSongToPlaylist(this.state.playlist,this.props.uri);
+    SpotifyPlaylistActions.addSongToPlaylist(
+      this.state.playlist,
+      this.props.uri,
+    );
   };
 }
 
