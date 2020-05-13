@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, View} from 'react-native';
+import {Text, StyleSheet, View, FlatList} from 'react-native';
 import SpotifyPlaylistStore from '../stores/SpotifyPlaylistStore';
 import SpotifyPlaylistActions from '../actions/SpotifyPlaylistActions';
+import SpotifyPlaylist from '../components/SpotifyPlaylist.js';
 
-class HomeScreen extends Component {
+class UserPlaylistsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = SpotifyPlaylistStore.getState();
@@ -12,19 +13,33 @@ class HomeScreen extends Component {
   }
 
   componentDidMount() {
-    console.log('loading playlists');
+    SpotifyPlaylistStore.listen(this.onChange);
     SpotifyPlaylistActions.updatePlaylists();
   }
 
+  componentWillUnmount() {
+    SpotifyPlaylistStore.unlisten(this.onChange);
+  }
+
   onChange(state) {
-    console.log('on Changed Called');
     this.setState(state);
   }
 
   render() {
+
     return (
       <View style={styles.viewStyle}>
-        <Text style={styles.text}>Home Screen</Text>
+        <FlatList
+          contentInsetAdjustmentBehavior="automatic"
+          data={this.state.playlists.items}
+          renderItem={({item}) => (
+            <SpotifyPlaylist
+              name={item.name}
+              tracks={item.tracks.total}
+            />
+          )}
+          keyExtractor={item => `${item.name}`}
+        />
       </View>
     );
   }
@@ -32,7 +47,7 @@ class HomeScreen extends Component {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: 50,
+    fontSize: 40,
   },
   viewStyle: {
     flex: 1,
@@ -41,4 +56,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default UserPlaylistsScreen;
