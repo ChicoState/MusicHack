@@ -21,9 +21,15 @@ export default class RecommendedSongRow extends Component {
   }
   /*
 
-  {this.state.lists.items.map((item, index) => {
-    return (<Picker.Item label={item.name} value={index} key={index}/>)
-  })}
+
+  <Picker.Item label = {this.state.lists.playlists.items[0].name}
+               value ={this.state.lists.playlists.items[0].id} />
+  <Picker.Item label = {this.state.lists.playlists.items[1].name}
+               value ={this.state.lists.playlists.items[1].id} />
+  <Picker.Item label = {this.state.lists.playlists.items[2].name}
+               value ={this.state.lists.playlists.items[2].id} />
+  <Picker.Item label = {this.state.lists.playlists.items[3].name}
+               value ={this.state.lists.playlists.items[3].id} />
 
   */
 
@@ -42,14 +48,9 @@ export default class RecommendedSongRow extends Component {
           selectedValue = {this.state.playlist}
           style={{height: 30, width: 250}}
           onValueChange = {this.updatePlaylist}>
-          <Picker.Item label = {this.state.lists.playlists.items[0].name}
-                       value ={this.state.lists.playlists.items[0].id} />
-          <Picker.Item label = {this.state.lists.playlists.items[1].name}
-                       value ={this.state.lists.playlists.items[1].id} />
-          <Picker.Item label = {this.state.lists.playlists.items[2].name}
-                       value ={this.state.lists.playlists.items[2].id} />
-          <Picker.Item label = {this.state.lists.playlists.items[3].name}
-                       value ={this.state.lists.playlists.items[3].id} />
+          {this.state.lists.playlists.items.map((item, index) => {
+            return (<Picker.Item label={item.name} value={item.id} key={index}/>)
+          })}
 
         </Picker>
         <Button
