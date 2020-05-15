@@ -28,19 +28,19 @@ class UserPlaylistsScreen extends Component {
   render() {
 
     return (
-      <View style={styles.viewStyle}>
-        <FlatList
-          contentInsetAdjustmentBehavior="automatic"
-          data={this.state.playlists.items}
-          renderItem={({item}) => (
-            <SpotifyPlaylist
-              name={item.name}
-              tracks={item.tracks.total}
-            />
+        <View style={styles.viewStyle}>
+            <FlatList
+                contentInsetAdjustmentBehavior="automatic"
+                data={this.state.playlists.items}
+                keyExtractor={item => `${item.name}`}
+                renderItem={({item}) => (
+                    <SpotifyPlaylist
+                        name={item.name}
+                        tracks={item.tracks.total}
+                    />
           )}
-          keyExtractor={item => `${item.name}`}
-        />
-      </View>
+            />
+        </View>
     );
   }
 }

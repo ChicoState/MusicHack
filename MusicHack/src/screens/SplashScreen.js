@@ -37,9 +37,11 @@ class Splash extends Component {
 
   render() {
     return (
-      <View style={styles.viewStyle}>
-        <Text style={styles.textStyle}>Music Hack</Text>
-      </View>
+        <View style={styles.viewStyle}>
+            <Text style={styles.textStyle}>
+                Music Hack
+            </Text>
+        </View>
     );
   }
 }

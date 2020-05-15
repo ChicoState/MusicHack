@@ -28,22 +28,21 @@ class RecommendedSongsList extends Component {
   }
 
   render() {
-    //console.log(this.state.songs);
     return (
-      <FlatList
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.scrollView}
-        data={this.state.songs}
-        renderItem={({item}) => (
-          <RecommendedSongRow
-            title={item.title}
-            artist={item.artist}
-            artwork={item.albumartwork}
-            uri={item.spotify_uri}
-          />
+        <FlatList
+            contentInsetAdjustmentBehavior="automatic"
+            data={this.state.songs}
+            keyExtractor={item => `${item.id}`}
+            renderItem={({item}) => (
+                <RecommendedSongRow
+                    artist={item.artist}
+                    artwork={item.albumartwork}
+                    title={item.title}
+                    uri={item.spotify_uri}
+                />
         )}
-        keyExtractor={item => `${item.id}`}
-      />
+            style={styles.scrollView}
+        />
     );
   }
 }

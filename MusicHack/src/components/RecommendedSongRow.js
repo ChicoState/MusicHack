@@ -19,7 +19,7 @@ export default class RecommendedSongRow extends Component {
       });
     };
   }
-  
+
   componentDidMount(){
     this.setState((state, props) => {
       return {playlist: this.state.lists.playlists.items[0].id};
