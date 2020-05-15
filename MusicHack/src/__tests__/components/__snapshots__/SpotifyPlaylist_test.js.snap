@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#aaa",
+      "borderWidth": 1,
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "color": "white",
+        "fontSize": 20,
+        "marginBottom": 20,
+        "textShadowColor": "#44c",
+        "textShadowRadius": 5,
+      }
+    }
+  />
+  <Text
+    style={
+      Object {
+        "color": "white",
+        "fontSize": 20,
+        "marginBottom": 20,
+        "textShadowColor": "#44c",
+        "textShadowRadius": 5,
+      }
+    }
+  >
+    Total tracks: 
+  </Text>
+</View>
+`;

@@ -4,7 +4,7 @@ import alt from '../alt';
 
 class SpotifyAuthActions {
   constructor() {
-    this.generateActions('getTokens', 'setTokens');
+    this.generateActions('setTokens');
   }
 }
 

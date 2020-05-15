@@ -6,9 +6,6 @@ class SpotifyAuthStore {
   constructor() {
     this.accessToken = null;
     this.refreshToken = null;
-    this.exportPublicMethods({
-      getAccessToken: this.getAccessToken,
-    });
     React.AsyncStorage.multiGet(
       ['@Spotify_access', '@Spotify_refresh'],
       (error, result) => this.onLoad(result),
@@ -43,14 +40,6 @@ class SpotifyAuthStore {
         refreshToken: tokens[1][1],
       });
     }
-  }
-
-  getAccessToken() {
-    return Promise.resolve().then(() => {
-      while (this.accessToken == undefined || this.accessToken == null) {}
-      console.log(this.accessToken);
-      return this.accessToken;
-    });
   }
 }
 
